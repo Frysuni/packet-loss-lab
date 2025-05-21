@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>HLS Player</title>
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+</head>
+<body>
+  <h1>HLS Player + UI</h1>
+  <video id="video" width="720" controls></video>
+
+  <script>
+    const video = document.getElementById('video');
+    const hls = new Hls();
+
+    hls.loadSource('video.m3u8');
+    hls.attachMedia(video);
+    hls.on(Hls.Events.MANIFEST_PARSED, function () {
+      video.play();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+include:
+  - ./vnc-gui/docker-compose.yaml
+  - ./nginx-hls-streamer/docker-compose.yaml
+  - ./netem-proxy/docker-compose.yaml
+
+networks:
+  public:
+    name: 'PUBLIC'
+  internal:
+    internal: true
+    name: 'INTERNAL'
+

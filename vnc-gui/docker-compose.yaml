@@ -1,0 +1,28 @@
+services:
+  vnc-gui:
+    environment:
+      - USER=root 
+      - HOSTNAME=vnc-gui
+      
+    build:
+      context: .
+      dockerfile: Dockerfile
+      tags: [vnc-gui]
+
+    container_name: vnc-gui
+    hostname: vnc-gui
+
+    secrets:
+      - vnc_password
+
+    networks:
+      - public
+      - internal
+    ports:
+      - ${VNC_GUI_PORT}:5901
+
+    restart: unless-stopped
+
+secrets:
+  vnc_password:
+    environment: VNC_PASSWORD

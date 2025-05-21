@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  netem-proxy:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      tags: [netem-proxy]
+    container_name: netem-proxy
+    hostname: netem-proxy
+    networks:
+      - public
+      - internal
+    ports:
+      - "${NETEM_HLS_STREAM_PORT}:8080"
+    cap_add:
+      - NET_ADMIN
+    volumes:
+      - ./start.sh:/start.sh
+    environment:
+      NETEM_PROFILE: ${NETEM_PROFILE}
+    depends_on:
+      - nginx-hls-streamer
+    restart: unless-stopped
+
