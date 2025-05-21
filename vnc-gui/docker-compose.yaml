@@ -12,17 +12,17 @@ services:
     container_name: vnc-gui
     hostname: vnc-gui
 
-    secrets:
-      - vnc_password
+    # secrets:
+    #   - vnc_password
 
     networks:
       - public
       - internal
     ports:
-      - ${VNC_GUI_PORT}:5901
+      - ${VNC_GUI_PORT}:80
 
     restart: unless-stopped
 
-secrets:
-  vnc_password:
-    environment: VNC_PASSWORD
+# secrets:
+#   vnc_password:
+#     environment: VNC_PASSWORD
